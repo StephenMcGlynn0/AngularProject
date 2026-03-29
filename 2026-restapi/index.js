@@ -27,7 +27,6 @@ app.get('/players', (req, res) =>{
     connection.query('SELECT * FROM players', (err, rows, fields) => {
   if (err) throw err
 
-console.log(rows)
   res.send(rows)
 })
 })
