@@ -4,18 +4,18 @@ import mysql from 'mysql'
 const app = express()
 
 let connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'gaanfl2026'
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'gaanfl2026'
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;
   }
- 
+
   console.log('connected as id ' + connection.threadId);
 });
 
@@ -23,12 +23,44 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-app.get('/players', (req, res) =>{
-    connection.query('SELECT * FROM players', (err, rows, fields) => {
-  if (err) throw err
+app.get('/players', (req, res) => {
+  connection.query('SELECT * FROM players', (err, rows, fields) => {
+    if (err) throw err
 
-  res.send(rows)
+    res.send(rows)
+  })
 })
+
+app.get('/teams', (req, res) => {
+  connection.query('SELECT * FROM teams', (err, rows, fields) => {
+    if (err) throw err
+
+    res.send(rows)
+  })
+})
+
+app.get('/managers', (req, res) => {
+  connection.query('SELECT * FROM managers', (err, rows, fields) => {
+    if (err) throw err
+
+    res.send(rows)
+  })
+})
+
+app.get('/fixtures', (req, res) => {
+  connection.query('SELECT * FROM fixtures', (err, rows, fields) => {
+    if (err) throw err
+
+    res.send(rows)
+  })
+})
+
+app.get('/results', (req, res) => {
+  connection.query('SELECT * FROM results', (err, rows, fields) => {
+    if (err) throw err
+
+    res.send(rows)
+  })
 })
 
 app.listen(3000, () => {
