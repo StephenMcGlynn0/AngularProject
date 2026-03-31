@@ -13,31 +13,31 @@
       <th scope="row">/teams</th>
       <td>GET teams</td>
       <td><a href="http://localhost:3000/teams" target="_blank">http://localhost:3000/teams</a></td>
-      <td><button type="button" class="btn btn-primary" (click)="getData('players')">GET</button></td>
+      <td><button type="button" class="btn btn-primary" (click)="getData('teams')">GET</button></td>
     </tr>
     <tr>
       <th scope="row">/players</th>
       <td>GET players</td>
       <td><a href="http://localhost:3000/players" target="_blank">http://localhost:3000/players</a></td>
-      <td>button</td>
+      <td><button type="button" class="btn btn-primary" (click)="getData('players')">GET</button></td>
     </tr>
     <tr>
       <th scope="row">/managers</th>
       <td>GET managers</td>
       <td><a href="http://localhost:3000/managers" target="_blank">http://localhost:3000/managers</a></td>
-      <td>button</td>
+      <td><button type="button" class="btn btn-primary" (click)="getData('managers')">GET</button></td>
     </tr>
     <tr>
       <th scope="row">/fixtures</th>
       <td>GET fixtures</td>
       <td><a href="http://localhost:3000/fixtures" target="_blank">http://localhost:3000/fixtures</a></td>
-      <td>button</td>
+      <td><button type="button" class="btn btn-primary" (click)="getData('fixtures')">GET</button></td>
     </tr>
     <tr>
       <th scope="row">/results</th>
       <td>GET results</td>
       <td><a href="http://localhost:3000/results" target="_blank">http://localhost:3000/results</a></td>
-      <td>button</td>
+      <td><button type="button" class="btn btn-primary" (click)="getData('results')">GET</button></td>
     </tr>
   </tbody>
 </table>
@@ -45,6 +45,6 @@
 <form>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">JSON Data</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" readonly rows="3"> {{ content }}</textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" readonly rows="10"> {{ content }}</textarea>
   </div>
 </form>

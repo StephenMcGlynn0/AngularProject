@@ -51,7 +51,7 @@ app.get('/managers', (req, res) => {
 })
 
 app.get('/fixtures', (req, res) => {
-  connection.query('SELECT * FROM fixtures', (err, rows, fields) => {
+  connection.query('SELECT * FROM fixtures WHERE round > 5', (err, rows, fields) => {
     if (err) throw err
 
     res.send(rows)
@@ -59,7 +59,7 @@ app.get('/fixtures', (req, res) => {
 })
 
 app.get('/results', (req, res) => {
-  connection.query('SELECT * FROM results', (err, rows, fields) => {
+  connection.query('SELECT * FROM fixtures WHERE round < 6', (err, rows, fields) => {
     if (err) throw err
 
     res.send(rows)
