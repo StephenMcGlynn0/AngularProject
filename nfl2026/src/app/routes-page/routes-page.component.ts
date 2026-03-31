@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PlayersComponent } from '../players/players.component';
+import { PlayersService } from '../players.service';
 
 @Component({
   selector: 'app-routes-page',
@@ -11,7 +12,17 @@ import { PlayersComponent } from '../players/players.component';
 export class RoutesPageComponent {
   content = "[]"
 
-  playersClicked() {
-    this.content = PlayersComponent
+  playersService = inject(PlayersService)
+
+  getData(route : string){
+    switch (route){
+      case 'players':
+        this.playersService.getPlayers().subscribe(
+      response => {
+        this.content = JSON.stringify(response, null, 2)
+        console.log(response)
+      }
+    )
+    }
   }
 }
