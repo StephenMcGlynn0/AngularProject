@@ -1,0 +1,16 @@
+<h1>Managers</h1>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(manager of managers; track manager.id){
+        <tr>
+            <td>{{ manager.name }}</td>
+        </tr>
+        }
+    </tbody>
+</table>
