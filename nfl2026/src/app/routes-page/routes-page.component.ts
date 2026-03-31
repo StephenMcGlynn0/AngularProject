@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PlayersComponent } from '../players/players.component';
 
 @Component({
   selector: 'app-routes-page',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './routes-page.component.css'
 })
 export class RoutesPageComponent {
+  content = "[]"
 
+  playersClicked() {
+    this.content = PlayersComponent
+  }
 }
