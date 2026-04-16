@@ -1,0 +1,18 @@
+<h1>Teams</h1>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(team of teams; track team.id){
+        <tr>
+            <td><span class="dot" [style.backgroundColor]="'rgb(' + team.rgb + ')'"></span>  {{ team.name }}</td>
+            <td>{{ team.powerrank}}</td>
+        </tr>
+        }
+    </tbody>
+</table>
