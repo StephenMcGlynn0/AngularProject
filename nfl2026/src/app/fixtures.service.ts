@@ -10,6 +10,8 @@ export class FixturesService {
 
   fixturesURL = "http://localhost:3000/fixtures"
   resultsURL = "http://localhost:3000/results"
+  resultsAndTeamRGBURL = "http://localhost:3000/resultsandteamrgb"
+  fixturesAndTeamRGBURL = "http://localhost:3000/fixturesandteamrgb"
 
 
   constructor(private http: HttpClient) { }
@@ -20,5 +22,13 @@ export class FixturesService {
 
   getResults(): Observable<Fixture[]> {
     return this.http.get<Fixture[]>(this.resultsURL)
+  }
+
+  getResultsAndTeamRGB(): Observable<Fixture[]> {
+    return this.http.get<Fixture[]>(this.resultsAndTeamRGBURL)
+  }
+
+  getFixturesAndTeamRGB(): Observable<Fixture[]> {
+    return this.http.get<Fixture[]>(this.resultsAndTeamRGBURL)
   }
 }

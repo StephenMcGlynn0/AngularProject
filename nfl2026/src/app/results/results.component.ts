@@ -13,32 +13,30 @@ import { TeamsService } from '../teams.service';
 })
 export class ResultsComponent {
   results: any[] = []
-  teams: Team[] = []
 
-  teamsService = inject(TeamsService)
+  selectedDivision: string = 'All'
 
   fixturesService = inject(FixturesService)
 
   constructor() {
-    this.fixturesService.getResults().subscribe(
+    this.fixturesService.getResultsAndTeamRGB().subscribe(
       response => {
         this.results = response
         console.log(response)
       }
     )
-
-    this.teamsService.getTeams().subscribe(
-      response => {
-        this.teams = response
-        console.log(response)
-      }
-    )
-
-    this.results.forEach(result => {
-        result.hteam = this.teams.find(t => t.name === result.hteam)
-        result.ateam = this.teams.find(t => t.name === result.ateam)
-      })
-      console.log(this.results)
   }
+
+  setDivision(div: string) {
+    this.selectedDivision = div
+  }
+
+  get filteredResults() {
+  if (this.selectedDivision === 'All') {
+    return this.results
+  }
+
+  return this.results.filter(r => r.division === Number(this.selectedDivision))
+}
 
 }

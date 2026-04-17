@@ -35,7 +35,7 @@ app.get('/players', (req, res) => {
 })
 
 app.get('/teams', (req, res) => {
-  connection.query('SELECT * FROM teams', (err, rows, fields) => {
+  connection.query('SELECT * FROM teams order by powerrank desc', (err, rows, fields) => {
     if (err) throw err
 
     res.send(rows)
@@ -62,6 +62,38 @@ app.get('/results', (req, res) => {
   connection.query('SELECT * FROM fixtures WHERE round < 6', (err, rows, fields) => {
     if (err) throw err
 
+    res.send(rows)
+  })
+})
+
+app.get('/resultsandteamrgb', (req, res) => {
+  connection.query(`
+    SELECT 
+      f.*,
+      home.rgb AS homeRgb,
+      away.rgb AS awayRgb
+    FROM fixtures f
+    JOIN teams home ON f.hteam = home.name
+    JOIN teams away ON f.ateam = away.name
+    WHERE f.round < 6
+  `, (err, rows) => {
+    if (err) throw err
+    res.send(rows)
+  })
+})
+
+app.get('/fixturesandteamrgb', (req, res) => {
+  connection.query(`
+    SELECT 
+      f.*,
+      home.rgb AS homeRgb,
+      away.rgb AS awayRgb
+    FROM fixtures f
+    JOIN teams home ON f.hteam = home.name
+    JOIN teams away ON f.ateam = away.name
+    WHERE f.round > 5
+  `, (err, rows) => {
+    if (err) throw err
     res.send(rows)
   })
 })
