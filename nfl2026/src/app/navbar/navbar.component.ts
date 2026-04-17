@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +10,15 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class NavbarComponent {
 
+  router = inject(Router)
+
   isLoggedIn(): boolean {
     return localStorage.getItem('loggedIn') === 'true'
   }
 
   logout() {
     localStorage.removeItem('loggedIn')
+    this.router.navigate(['/'])
   }
 
 }

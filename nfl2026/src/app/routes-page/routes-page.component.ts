@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { PlayersComponent } from '../players/players.component';
 import { PlayersService } from '../players.service';
 import { TeamsService } from '../teams.service';
 import { ManagersService } from '../managers.service';
