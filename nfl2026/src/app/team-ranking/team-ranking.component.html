@@ -1,0 +1,12 @@
+<h1>Team Rankings</h1>
+<hr>
+<p><strong>Who has been the better team lately?</strong></p>
+
+@if (teamA && teamB) {
+  <div class="d-grid gap-2">
+    <button class="btn btn-secondary btn-lg" (click)="vote(teamA)">{{ teamA.name }}</button>
+    <button class="btn btn-secondary btn-lg" (click)="vote(teamB)">{{ teamB.name }}</button>
+  </div>
+}
+
+<p>{{ votesRemaining }} votes remaining</p>

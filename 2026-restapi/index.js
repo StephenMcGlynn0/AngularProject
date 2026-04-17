@@ -43,7 +43,7 @@ app.get('/teams', (req, res) => {
 })
 
 app.get('/managers', (req, res) => {
-  connection.query('SELECT * FROM managers', (err, rows, fields) => {
+  connection.query('SELECT * FROM managers order by name', (err, rows, fields) => {
     if (err) throw err
 
     res.send(rows)
@@ -76,6 +76,7 @@ app.get('/resultsandteamrgb', (req, res) => {
     JOIN teams home ON f.hteam = home.name
     JOIN teams away ON f.ateam = away.name
     WHERE f.round < 6
+    ORDER BY f.round, f.division, f.hteam
   `, (err, rows) => {
     if (err) throw err
     res.send(rows)
@@ -92,9 +93,18 @@ app.get('/fixturesandteamrgb', (req, res) => {
     JOIN teams home ON f.hteam = home.name
     JOIN teams away ON f.ateam = away.name
     WHERE f.round > 5
+    ORDER BY f.round, f.division, f.hteam
   `, (err, rows) => {
     if (err) throw err
     res.send(rows)
+  })
+})
+
+app.put('/teams/:name/vote', (req, res) => {
+  const name = req.params.name
+  connection.query('UPDATE teams SET powerrank = powerrank + 1 WHERE name = ?', [name], (err, result) => {
+    if (err) throw err
+    res.send(result)
   })
 })
 

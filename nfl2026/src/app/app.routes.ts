@@ -4,6 +4,7 @@ import { ManagersComponent } from './managers/managers.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ResultsComponent } from './results/results.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
+import { TeamRankingComponent } from './team-ranking/team-ranking.component';
 
 export const routes: Routes = [
     {path: '', component: RoutesPageComponent, title: 'Home'},
@@ -11,4 +12,5 @@ export const routes: Routes = [
     {path: 'teams', component: TeamsComponent, title: 'Teams'},
     {path: 'results', component: ResultsComponent, title: 'Results'},
     {path: 'fixtures', component: FixturesComponent, title: 'Fixtures'},
+    { path: 'team-ranking', component: TeamRankingComponent, title: 'Team Rankings' }
 ];
