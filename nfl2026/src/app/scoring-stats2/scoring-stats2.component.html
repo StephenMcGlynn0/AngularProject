@@ -1,1 +1,46 @@
-<p>scoring-stats2 works!</p>
+<h1>Scoring</h1>
+<hr>
+<h3>Total per match</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Division</th>
+      @for(round of rounds; track round) {
+        <th>Round {{ round }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for(division of divisions; track division) {
+      <tr>
+        <td>{{ division }}</td>
+        @for(round of rounds; track round) {
+          <td>{{ getTotalPerMatch(division, round)|number:'1.1-1' }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
+
+<hr>
+<h3>Teams per Round</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Teams</th>
+      @for(round of rounds; track round) {
+        <th>Round {{ round }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for(team of getTeams(); track team) {
+      <tr>
+        <td>{{ team }}</td>
+        @for(round of rounds; track round) {
+          <td>{{ getTeamRoundScore(team, round) }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
