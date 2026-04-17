@@ -10,4 +10,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class NavbarComponent {
 
+  isLoggedIn(): boolean {
+    return localStorage.getItem('loggedIn') === 'true'
+  }
+
+  logout() {
+    localStorage.removeItem('loggedIn')
+  }
+
 }

@@ -5,6 +5,7 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors())
+app.use(express.json())
 
 let connection = mysql.createConnection({
   host: 'localhost',
@@ -100,6 +101,13 @@ app.get('/fixturesandteamrgb', (req, res) => {
   })
 })
 
+app.get('/fixtures/all', (req, res) => {
+  connection.query('SELECT * FROM fixtures ORDER BY round, division, hteam', (err, rows) => {
+    if (err) throw err
+    res.send(rows)
+  })
+})
+
 app.put('/teams/:name/vote', (req, res) => {
   const name = req.params.name
   connection.query('UPDATE teams SET powerrank = powerrank + 1 WHERE name = ?', [name], (err, result) => {
@@ -131,6 +139,21 @@ app.get('/scoringstats', (req, res) => {
     res.send(rows)
   })
 })
+
+app.put('/fixtures/:id', (req, res) => {
+  const id = req.params.id
+  const { hteam, ateam, hteamscore, ateamscore, hgls, h2pts, h1pts, hteamtotal, agls, a2pts, a1pts, ateamtotal } = req.body
+  connection.query(
+    'UPDATE fixtures SET hteam=?, ateam=?, hteamscore=?, ateamscore=?, hgls=?, h2pts=?, h1pts=?, hteamtotal=?, agls=?, a2pts=?, a1pts=?, ateamtotal=? WHERE id=?',
+    [hteam, ateam, hteamscore, ateamscore, hgls, h2pts, h1pts, hteamtotal, agls, a2pts, a1pts, ateamtotal, id],
+    (err, result) => {
+      if (err) throw err
+      res.send(result)
+    }
+  )
+})
+
+
 
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')

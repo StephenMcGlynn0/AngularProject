@@ -8,6 +8,8 @@ import { TeamRankingComponent } from './team-ranking/team-ranking.component';
 import { ScoringStatsComponent } from './scoring-stats/scoring-stats.component';
 import { ScoringStats2Component } from './scoring-stats2/scoring-stats2.component';
 import { ScoringChartComponent } from './scoring-chart/scoring-chart.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
     {path: '', component: RoutesPageComponent, title: 'Home'},
@@ -18,5 +20,7 @@ export const routes: Routes = [
     { path: 'team-ranking', component: TeamRankingComponent, title: 'Team Rankings' },
     { path: 'scoring-stats', component: ScoringStatsComponent, title: 'Scoring Stats' },
     { path: 'scoring-stats2', component: ScoringStats2Component, title: 'Scoring Stats II' },
-    { path: 'scoring-chart', component: ScoringChartComponent, title: 'Scoring Chart' }
+    { path: 'scoring-chart', component: ScoringChartComponent, title: 'Scoring Chart' },
+    { path: 'login', component: LoginComponent, title: 'Login' },
+    { path: 'admin', component: AdminComponent, title: 'Admin' },
 ];

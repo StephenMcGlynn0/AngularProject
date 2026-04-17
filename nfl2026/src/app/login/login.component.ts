@@ -9,16 +9,20 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  
-  email: string = ''
-  password: string = ''
 
   router = inject(Router)
 
   login() {
-    if (this.email === 'thomas.devine@atu.ie' && this.password === 'password') {
+    let emailInput = document.getElementById('email') as HTMLInputElement;
+    let passwordInput = document.getElementById('password') as HTMLInputElement;
+    console.log('Email:', emailInput.value);
+    console.log('Password:', passwordInput.value);
+
+    if (emailInput.value === 'thomas.devine@atu.ie' && passwordInput.value === 'password') {
       localStorage.setItem('loggedIn', 'true')
       this.router.navigate(['/admin'])
+    }else{
+      alert('Invalid credentials. Please try again.')
     }
   }
 }

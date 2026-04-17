@@ -1,0 +1,44 @@
+<h1>Results Admin</h1>
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Division</th>
+            <th>Home Team</th>
+            <th colspan="2"></th>
+            <th>Away Team</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(fixture of fixtures; track fixture.id) {
+        <tr>
+            <td>{{ fixture.division }}</td>
+            <td>@if(fixture.round > 7) {
+                <input type="text" class="form-control" #hteam [value]="fixture.hteam"
+                    (change)="fixture.hteam = hteam.value">
+                } @else {
+                {{ fixture.hteam }}
+                }
+            </td>
+            <td><input type="text" class="form-control" #hscore [value]="fixture.hteamscore"></td>
+            <td><input type="text" class="form-control" #ascore [value]="fixture.ateamscore"></td>
+            <td>@if(fixture.round > 7) {
+                <input type="text" class="form-control" #ateam [value]="fixture.ateam"
+                    (change)="fixture.ateam = ateam.value">
+                } @else {
+                {{ fixture.ateam }}
+                }
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="update(fixture, hscore.value, ascore.value)">Update</button>
+            </td>
+        </tr>
+        @if(errorMessages[fixture.id]) {
+        <tr>
+            <td colspan="6" class="text-danger">{{ errorMessages[fixture.id] }}</td>
+        </tr>
+        }
+        }
+    </tbody>
+</table>
