@@ -14,6 +14,6 @@ export interface Fixture {
     a2pts: number
     a1pts: number
     ateamtotal: number
-    hteamrgb?: string
-    ateamrgb?: string
+    homeRgb?: string
+    awayRgb?: string
 }

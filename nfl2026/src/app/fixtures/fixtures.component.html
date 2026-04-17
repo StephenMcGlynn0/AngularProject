@@ -1,0 +1,53 @@
+<h1>Fixtures</h1>
+<hr>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioAll" value="All" checked (change)="setDivision('All')">
+  <label class="form-check-label" for="inlineRadioAll">All</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD1" value="D1" (change)="setDivision('1')">
+  <label class="form-check-label" for="inlineRadioD1">D1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD2" value="D2" (change)="setDivision('2')">
+  <label class="form-check-label" for="inlineRadioD2">D2</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD3" value="D3" (change)="setDivision('3')">
+  <label class="form-check-label" for="inlineRadioD3">D3</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD4" value="D4" (change)="setDivision('4')">
+  <label class="form-check-label" for="inlineRadioD4">D4</label>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td colspan="5"><strong>Round 6</strong></td>
+    </tr>
+    <tr>
+      <th scope="col">Division</th>
+      <th scope="col">Home Team</th>
+      <th scope="col">Score</th>
+      <th scope="col">Score</th>
+      <th scope="col">Away Team</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(fix of filteredFixtures; let i = $index; track fix.id){
+    @if (i !== 0 && fix.round !== filteredFixtures[i - 1].round){
+    <tr>
+      <td colspan="5"><strong>Round {{ fix.round }}</strong></td>
+    </tr>
+    }
+    <tr>
+      <td>{{ fix.division}}</td>
+      <td><span class="dot" [style.backgroundColor]="'rgb(' + fix.homeRgb + ')'"></span> {{ fix.hteam }}</td>
+      <td>{{ fix.hteamscore }}({{fix.hteamtotal}})</td>
+      <td>{{ fix.ateamscore}}({{fix.ateamtotal}})</td>
+      <td><span class="dot" [style.backgroundColor]="'rgb(' + fix.awayRgb + ')'"></span> {{ fix.ateam }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

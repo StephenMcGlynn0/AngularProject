@@ -29,6 +29,6 @@ export class FixturesService {
   }
 
   getFixturesAndTeamRGB(): Observable<Fixture[]> {
-    return this.http.get<Fixture[]>(this.resultsAndTeamRGBURL)
+    return this.http.get<Fixture[]>(this.fixturesAndTeamRGBURL)
   }
 }

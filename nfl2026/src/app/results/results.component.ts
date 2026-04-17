@@ -32,11 +32,11 @@ export class ResultsComponent {
   }
 
   get filteredResults() {
-  if (this.selectedDivision === 'All') {
-    return this.results
-  }
+    if (this.selectedDivision === 'All') {
+      return this.results
+    }
 
-  return this.results.filter(r => r.division === Number(this.selectedDivision))
-}
+    return this.results.filter(r => r.division === Number(this.selectedDivision))
+  }
 
 }
