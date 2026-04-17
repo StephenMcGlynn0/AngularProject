@@ -1,0 +1,47 @@
+<h1>Score Stats (per match)</h1>
+<hr>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioAll" value="All" checked (change)="setDivision('All')">
+  <label class="form-check-label" for="inlineRadioAll">All</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD1" value="D1" (change)="setDivision('1')">
+  <label class="form-check-label" for="inlineRadioD1">D1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD2" value="D2" (change)="setDivision('2')">
+  <label class="form-check-label" for="inlineRadioD2">D2</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD3" value="D3" (change)="setDivision('3')">
+  <label class="form-check-label" for="inlineRadioD3">D3</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="division" id="inlineRadioD4" value="D4" (change)="setDivision('4')">
+  <label class="form-check-label" for="inlineRadioD4">D4</label>
+</div>
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Team</th>
+      <th scope="col">Matches</th>
+      <th scope="col" style="cursor:pointer" (click)="setSort('total')">Total</th>
+      <th scope="col" style="cursor:pointer" (click)="setSort('gls')">Goals</th>
+      <th scope="col" style="cursor:pointer" (click)="setSort('pts2')">2Pts</th>
+      <th scope="col" style="cursor:pointer" (click)="setSort('pts1')">1Pts</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(stat of filteredStats; track stat.name) {
+    <tr>
+      <td><span class="dot" [style.backgroundColor]="'rgb(' + stat.rgb + ')'"></span> {{ stat.name }}</td>
+      <td>{{ stat.matches }}</td>
+      <td>{{ stat.total }}</td>
+      <td>{{ stat.gls }}</td>
+      <td>{{ stat.pts2 }}</td>
+      <td>{{ stat.pts1 }}</td>
+    </tr>
+    }
+  </tbody>
+</table>

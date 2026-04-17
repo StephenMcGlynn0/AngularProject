@@ -108,6 +108,30 @@ app.put('/teams/:name/vote', (req, res) => {
   })
 })
 
+app.get('/scoringstats', (req, res) => {
+  connection.query(`
+    SELECT 
+      t.name,
+      t.rgb,
+      scores.division,
+      COUNT(*) as matches,
+      ROUND((SUM(gls) / COUNT(*)), 1) as gls,
+      ROUND((SUM(pts2) / COUNT(*)), 1) as pts2,
+      ROUND((SUM(pts1) / COUNT(*)), 1) as pts1,
+      ROUND((SUM(total) / COUNT(*)), 1) as total
+    FROM (
+      SELECT hteam as name, hgls as gls, h2pts as pts2, h1pts as pts1, hteamtotal as total, division FROM fixtures WHERE round < 6
+      UNION ALL
+      SELECT ateam as name, agls as gls, a2pts as pts2, a1pts as pts1, ateamtotal as total, division FROM fixtures WHERE round < 6
+    ) scores
+    JOIN teams t ON t.name = scores.name
+    GROUP BY t.name, t.rgb, scores.division
+  `, (err, rows) => {
+    if (err) throw err
+    res.send(rows)
+  })
+})
+
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000')
 })
